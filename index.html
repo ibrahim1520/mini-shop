@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Shop – Products</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo">🛍️</span>
+        <h1>Mini Shop</h1>
+      </div>
+
+      <div class="search-bar">
+        <input id="searchInput" type="search" placeholder="Search products..." />
+      </div>
+
+      <div class="cart" id="cartToggle" title="Open cart (C)">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <aside class="filters">
+        <h2>Filters</h2>
+        <label class="filter-block">
+          <span>Category</span>
+          <select id="categorySelect">
+            <option value="all">All</option>
+          </select>
+        </label>
+
+        <label class="filter-block">
+          <span>Price</span>
+          <div class="range-row">
+            <input id="priceMin" type="number" min="0" step="1" value="0" />
+            <span>to</span>
+            <input id="priceMax" type="number" min="0" step="1" value="9999" />
+          </div>
+        </label>
+
+        <label class="filter-block">
+          <span>Sort by</span>
+          <select id="sortSelect">
+            <option value="relevance">Relevance</option>
+            <option value="priceAsc">Price: Low → High</option>
+            <option value="priceDesc">Price: High → Low</option>
+            <option value="ratingDesc">Rating: High → Low</option>
+            <option value="nameAsc">Name: A → Z</option>
+          </select>
+        </label>
+
+        <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+      </aside>
+
+      <section class="products">
+        <div class="toolbar">
+          <div id="resultsCount"></div>
+          <div id="loader" class="loader hidden"></div>
+        </div>
+        <div id="productsList" class="products-list"></div>
+      </section>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <header class="cart-drawer__header">
+          <h2 id="cartTitle">Your Cart</h2>
+          <button id="closeCart" class="icon-btn" title="Close (Esc)">✕</button>
+        </header>
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <footer class="cart-drawer__footer">
+          <div class="totals-row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">$0.00</strong>
+          </div>
+          <button id="checkoutBtn" class="btn">Checkout (demo)</button>
+          <p class="muted">Items are saved automatically. This is a demo checkout.</p>
+        </footer>
+      </div>
+      <div id="cartBackdrop" class="cart-drawer__backdrop"></div>
+    </div>
+
+    <template id="productCardTmpl">
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3 class="title"></h3>
+          <div class="meta">
+            <span class="price"></span>
+            <span class="rating"></span>
+          </div>
+          <button class="btn add-btn">Add to Cart</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="cartItemTmpl">
+      <div class="cart-item">
+        <div class="ci-thumb"></div>
+        <div class="ci-info">
+          <div class="ci-title"></div>
+          <div class="ci-meta">
+            <span class="ci-price"></span>
+            <span class="ci-rating"></span>
+          </div>
+          <div class="qty-row">
+            <button class="qty-btn dec">−</button>
+            <input class="qty-input" type="number" min="1" value="1" />
+            <button class="qty-btn inc">+</button>
+            <button class="link danger remove">Remove</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
